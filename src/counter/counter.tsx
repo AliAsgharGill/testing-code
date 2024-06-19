@@ -8,7 +8,7 @@ const Counter = () => {
       <h1>{counter}</h1>
       <button onClick={() => setCounter(counter + 1)}>Increment</button>
       <div>
-        <h1>{amount}</h1>
+        <p>{amount}</p>
         <input
           type="number"
           name="amount"
