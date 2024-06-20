@@ -1,21 +1,18 @@
-import { http } from "msw";
+import { rest, RequestHandler, RestRequest, RestResponse, RestContext } from 'msw';
+
+const getUsersHandler: RequestHandler = (req: RestRequest, res: RestResponse, ctx: RestContext) => {
+  return res(
+    ctx.status(200),
+    ctx.json([
+      { name: 'Leanne Graham' },
+      { name: 'Ervin Howell' },
+      { name: 'Clementine Bauch' },
+      { name: 'Patricia Lebsack' },
+      { name: 'Chelsey Dietrich' }
+    ])
+  );
+};
 
 export const handlers = [
-  http.get("https://jsonplaceholder.typicode.com/users", (req, res, ctx) => {
-    return res(
-      // ctx.status(200),
-      ctx.json([
-        { name: "Leanne Graham" },
-        { name: "Ervin Howell" },
-        { name: "Clementine Bauch" },
-        { name: "Patricia Lebsack" },
-        { name: "Chelsey Dietrich" },
-        { name: "Mrs. Dennis Schulist" },
-        { name: "Kurtis Weissnat" },
-        { name: "Nicholas Runolfsdottir V" },
-        { name: "Glenna Reichert" },
-        { name: "Clementina DuBuque" },
-      ])
-    );
-  }),
+  rest.get('https://jsonplaceholder.typicode.com/users', getUsersHandler),
 ];
